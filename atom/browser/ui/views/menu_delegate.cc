@@ -5,10 +5,10 @@
 #include "atom/browser/ui/views/menu_delegate.h"
 
 #include "atom/browser/ui/views/menu_bar.h"
+#include "atom/browser/ui/views/menu_model_adapter.h"
 #include "content/public/browser/browser_thread.h"
 #include "ui/views/controls/button/menu_button.h"
 #include "ui/views/controls/menu/menu_item_view.h"
-#include "ui/views/controls/menu/menu_model_adapter.h"
 #include "ui/views/controls/menu/menu_runner.h"
 #include "ui/views/widget/widget.h"
 
@@ -30,7 +30,7 @@ void MenuDelegate::RunMenu(ui::MenuModel* model, views::MenuButton* button) {
                    button->height() - 1);
 
   id_ = button->tag();
-  adapter_.reset(new views::MenuModelAdapter(model));
+  adapter_.reset(new atom::MenuModelAdapter(model));
 
   views::MenuItemView* item = new views::MenuItemView(this);
   static_cast<views::MenuModelAdapter*>(adapter_.get())->BuildMenu(item);
